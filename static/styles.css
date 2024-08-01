@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+    margin: auto;
+    max-width: 800px;
+}
+
+h1 {
+    font-size: 48px;
+    margin-top: 20px;
+    color: #fff;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Heading Colors */
+h2.neuroticism {
+    color: #ff6666;  /* Light Red */
+}
+
+h2.extraversion {
+    color: #66ff66;  /* Light Green */
+}
+
+h2.openness {
+    color: #6666ff;  /* Light Blue */
+}
+
+h2.agreeableness {
+    color: #ff66ff;  /* Light Pink */
+}
+
+h2.conscientiousness {
+    color: #ffff66;  /* Light Yellow */
+}
+
+p {
+    font-size: 18px;
+    color: #ccc;
+}
+
+form {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+input[type="range"] {
+    width: 80%;
+    margin: 10px 0;
+}
+
+input[type="submit"] {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #ff4500;
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NEO-PI-R Personality Inventory</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Deep Connections</h1>
+        <p>Personality-Driven Connections</p>
+        <form action="/submit" method="post">
+
+            <h2 class="neuroticism">Neuroticism</h2>
+            <label for="anxiety">How easily do you become anxious in uncertain situations?</label>
+            <input type="range" id="anxiety" name="anxiety" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="hostility">How quickly do you find yourself feeling angry?</label>
+            <input type="range" id="hostility" name="hostility" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="depression">How often do you feel down, depressed, or hopeless?</label>
+            <input type="range" id="depression" name="depression" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="self-consciousness">How frequently do you feel self-conscious or embarrassed?</label>
+            <input type="range" id="self-consciousness" name="self-consciousness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="impulsiveness">How often do you act on impulse rather than thinking things through?</label>
+            <input type="range" id="impulsiveness" name="impulsiveness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="vulnerability">How easily do you feel overwhelmed by stress or fear?</label>
+            <input type="range" id="vulnerability" name="vulnerability" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <h2 class="extraversion">Extraversion</h2>
+            <label for="warmth">How often do you engage in acts of kindness towards others?</label>
+            <input type="range" id="warmth" name="warmth" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="gregariousness">How much do you enjoy being around others?</label>
+            <input type="range" id="gregariousness" name="gregariousness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="assertiveness">How comfortable are you in expressing your opinions openly?</label>
+            <input type="range" id="assertiveness" name="assertiveness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="activity">How energetic do you consider yourself on a daily basis?</label>
+            <input type="range" id="activity" name="activity" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="excitement_seeking">How often do you seek out activities that are thrilling or risky?</label>
+            <input type="range" id="excitement_seeking" name="excitement_seeking" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="positive_emotion">How frequently do you feel cheerful and full of life?</label>
+            <input type="range" id="positive_emotion" name="positive_emotion" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <h2 class="openness">Openness to Experience</h2>
+            <label for="fantasy">How often do you engage in daydreaming or imaginative activities?</label>
+            <input type="range" id="fantasy" name="fantasy" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="aesthetics">How much are you interested in art and aesthetic experiences?</label>
+            <input type="range" id="aesthetics" name="aesthetics" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="feelings">How deeply do you feel emotions?</label>
+            <input type="range" id="feelings" name="feelings" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="actions">How often do you engage in adventurous or exploratory activities?</label>
+            <input type="range" id="actions" name="actions" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="ideas">How curious are you about new ideas or knowledge?</label>
+            <input type="range" id="ideas" name="ideas" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="values">How open are you to new values and ambiguous situations?</label>
+            <input type="range" id="values" name="values" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <h2 class="agreeableness">Agreeableness</h2>
+            <label for="trust">How easily do you trust others?</label>
+            <input type="range" id="trust" name="trust" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="straightforwardness">How important is it for you to always be straightforward and moral?</label>
+            <input type="range" id="straightforwardness" name="straightforwardness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="altruism">How often do you help others expecting nothing in return?</label>
+            <input type="range" id="altruism" name="altruism" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="compliance">How willing are you to comply with rules and cooperate with others?</label>
+            <input type="range" id="compliance" name="compliance" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="modesty">How important is modesty to you, and how often do you practice it?</label>
+            <input type="range" id="modesty" name="modesty" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="tender_mindedness">How sympathetic are you towards the troubles of others?</label>
+            <input type="range" id="tender_mindedness" name="tender_mindedness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <h2 class="conscientiousness">Conscientiousness</h2>
+            <label for="competence">How competent do you feel in handling complex tasks?</label>
+            <input type="range" id="competence" name="competence" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="orderliness">How organized are you in your personal and professional life?</label>
+            <input type="range" id="orderliness" name="orderliness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5"><br>
+
+            <label for="dutifulness">How seriously do you take your duties and obligations?</label>
+            <input type="range" id="dutifulness" name="dutifulness" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="achievement_striving">How strong is your drive for achievement?</label>
+            <input type="range" id="achievement_striving" name="achievement_striving" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="self_discipline">How good are you at resisting temptations and staying disciplined?</label>
+            <input type="range" id="self_discipline" name="self_discipline" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <label for="deliberation">How cautious are you when making decisions?</label>
+            <input type="range" id="deliberation" name="deliberation" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"><output>5</output><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
