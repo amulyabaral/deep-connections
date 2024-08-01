@@ -13,7 +13,6 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    # Collect data from the form and convert to numeric values
     data = {
         'Neuroticism': [
             int(request.form['anxiety']),
@@ -57,23 +56,19 @@ def submit():
         ]
     }
 
-    # Calculate cumulative scores for each main category
     cumulative_scores = {category: sum(scores) for category, scores in data.items()}
 
-    # Prepare data for radar chart
     labels = list(cumulative_scores.keys())
     values = list(cumulative_scores.values())
-    values += values[:1]  # Repeat the first value to close the radar chart
+    values += values[:1]
 
     angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
-    angles += angles[:1]  # Complete the loop
+    angles += angles[:1]
 
-    # Colors for each main category
-    colors = ['red', 'green', 'blue', 'purple', 'orange']
+    colors = ['#ff6666', '#66ff66', '#6666ff', '#ff66ff', '#ffff66']
 
-    # Create radar chart
     fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-    ax.fill(angles, values, color='grey', alpha=0.1)  # Background fill for visibility
+    ax.fill(angles, values, color='grey', alpha=0.1)
 
     for i in range(len(labels)):
         values_single = [values[i], values[i+1]]
@@ -86,7 +81,6 @@ def submit():
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels(labels)
 
-    # Save the plot to a BytesIO object
     img = io.BytesIO()
     plt.savefig(img, format='png')
     img.seek(0)
