@@ -65,24 +65,29 @@ def submit():
     angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
     angles += angles[:1]
 
-    colors = ['#ff6666', '#66ff66', '#6666ff', '#ff66ff', '#ffff66']
+    colors = ['#ADD8E6' for _ in range(len(labels))]
 
     fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-    ax.fill(angles, values, color='grey', alpha=0.1)
+    fig.patch.set_facecolor('white')
+    ax.set_facecolor('white')
 
-    for i in range(len(labels)):
-        values_single = [values[i], values[i+1]]
-        angles_single = [angles[i], angles[i+1]]
-        ax.fill(angles_single, values_single, color=colors[i], alpha=0.25)
-        ax.plot(angles_single, values_single, color=colors[i], linewidth=2)
+    ax.fill(angles, values, color='lightblue', alpha=0.25)
+    ax.plot(angles, values, color='lightblue', linewidth=2)
+
+    # Adding dots for each category
+    ax.scatter(angles[:-1], values[:-1], color='blue', s=50, zorder=10)
+
+    # Adding category labels at the data points
+    for angle, value, label in zip(angles, values, labels):
+        ax.text(angle, value, label, horizontalalignment='center', size=12, color='blue', weight='semibold')
 
     ax.set_yticklabels([])
 
     ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(labels)
+    ax.set_xticklabels([])
 
     img = io.BytesIO()
-    plt.savefig(img, format='png')
+    plt.savefig(img, format='png', bbox_inches='tight')
     img.seek(0)
     plot_url = base64.b64encode(img.getvalue()).decode()
 
