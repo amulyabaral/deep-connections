@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import seaborn as sns
 import io
 import base64
 
@@ -56,35 +57,50 @@ def submit():
         ]
     }
 
-    cumulative_scores = {category: sum(scores) for category, scores in data.items()}
+    # Creating DataFrame for each main category with subcategories
+    neuroticism_df = pd.DataFrame({
+        'Subcategory': ['Anxiety', 'Hostility', 'Depression', 'Self-consciousness', 'Impulsiveness', 'Vulnerability'],
+        'Score': data['Neuroticism']
+    }).set_index('Subcategory')
+    
+    extraversion_df = pd.DataFrame({
+        'Subcategory': ['Warmth', 'Gregariousness', 'Assertiveness', 'Activity', 'Excitement Seeking', 'Positive Emotion'],
+        'Score': data['Extraversion']
+    }).set_index('Subcategory')
+    
+    openness_df = pd.DataFrame({
+        'Subcategory': ['Fantasy', 'Aesthetics', 'Feelings', 'Actions', 'Ideas', 'Values'],
+        'Score': data['Openness to Experience']
+    }).set_index('Subcategory')
+    
+    agreeableness_df = pd.DataFrame({
+        'Subcategory': ['Trust', 'Straightforwardness', 'Altruism', 'Compliance', 'Modesty', 'Tender-mindedness'],
+        'Score': data['Agreeableness']
+    }).set_index('Subcategory')
+    
+    conscientiousness_df = pd.DataFrame({
+        'Subcategory': ['Competence', 'Orderliness', 'Dutifulness', 'Achievement Striving', 'Self-discipline', 'Deliberation'],
+        'Score': data['Conscientiousness']
+    }).set_index('Subcategory')
 
-    labels = list(cumulative_scores.keys())
-    values = list(cumulative_scores.values())
-    values += values[:1]
+    # Concatenate all DataFrames into one
+    combined_df = pd.concat([neuroticism_df, extraversion_df, openness_df, agreeableness_df, conscientiousness_df], axis=0, keys=['Neuroticism', 'Extraversion', 'Openness to Experience', 'Agreeableness', 'Conscientiousness'])
+    combined_df = combined_df.reset_index().rename(columns={'level_0': 'Category'})
 
-    angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
-    angles += angles[:1]
+    # Pivot the DataFrame for plotting
+    plot_df = combined_df.pivot(index='Category', columns='Subcategory', values='Score')
 
-    colors = ['#ADD8E6' for _ in range(len(labels))]
+    # Plotting the stacked bar graph using seaborn for pastel colors
+    fig, ax = plt.subplots(figsize=(10, 7))
+    plot_df.plot(kind='bar', stacked=True, ax=ax, color=sns.color_palette("pastel", len(plot_df.columns)))
 
-    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-    fig.patch.set_facecolor('white')
-    ax.set_facecolor('white')
+    ax.set_title('Personality Traits Stacked Bar Graph')
+    ax.set_ylabel('Scores')
+    ax.set_xlabel('Personality Categories')
+    ax.legend(loc='upper right', bbox_to_anchor=(1.15, 1), title='Subcategories')
 
-    ax.fill(angles, values, color='lightblue', alpha=0.25)
-    ax.plot(angles, values, color='lightblue', linewidth=2)
-
-    # Adding dots for each category
-    ax.scatter(angles[:-1], values[:-1], color='blue', s=50, zorder=10)
-
-    # Adding category labels at the data points
-    for angle, value, label in zip(angles, values, labels):
-        ax.text(angle, value, label, horizontalalignment='center', size=12, color='blue', weight='semibold')
-
-    ax.set_yticklabels([])
-
-    ax.set_xticks(angles[:-1])
-    ax.set_xticklabels([])
+    plt.xticks(rotation=45)
+    plt.tight_layout()
 
     img = io.BytesIO()
     plt.savefig(img, format='png', bbox_inches='tight')
